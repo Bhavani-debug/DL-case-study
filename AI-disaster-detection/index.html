@@ -1,0 +1,626 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI DisasterGuard | Home</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* GENERAL */
+        body {
+            margin: 0;
+            padding-top: 65px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #263247;
+            background: #ffffff;
+        }
+
+        h1, h2, h3, h4, p {
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 19px;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            min-height: 65px;
+            padding: 10px 0;
+        }
+
+        .navbar-brand {
+            font-size: 19px;
+            letter-spacing: 0.2px;
+        }
+
+        .navbar-nav {
+            gap: 5px;
+        }
+
+        .navbar .nav-link {
+            font-size: 14px;
+            padding: 8px 12px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 390px;
+            display: flex;
+            align-items: center;
+            padding: 55px 0;
+            color: #ffffff;
+            background: linear-gradient(120deg, #101d35, #183b63);
+        }
+
+        .hero .container,
+        .section .container {
+            max-width: 1120px;
+        }
+
+        .hero .badge {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 8px 12px;
+            letter-spacing: 0.7px;
+        }
+
+        .hero h1 {
+            max-width: 590px;
+            font-size: 35px;
+            line-height: 1.35;
+            font-weight: 650;
+            margin: 15px 0;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: #69c4ff;
+        }
+
+        .hero .lead {
+            max-width: 520px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #e1e9f3;
+        }
+
+        .hero .btn {
+            font-size: 13px;
+            padding: 10px 16px;
+            border-radius: 6px;
+        }
+
+        .hero-card {
+            max-width: 320px;
+            margin: 15px auto;
+            padding: 30px 24px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.17);
+            border-radius: 12px;
+        }
+
+        .warning-icon {
+            font-size: 44px;
+            margin-bottom: 14px;
+        }
+
+        .hero-card h3 {
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .hero-card p {
+            color: #d4e0ef;
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        /* COMMON SECTIONS */
+        .section {
+            padding: 55px 0;
+        }
+
+        .section-heading {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .section-heading p {
+            color: #6b7280;
+            margin-bottom: 0;
+        }
+
+        /* FEATURE CARDS */
+        .feature-card {
+            height: 100%;
+            padding: 24px 18px;
+            text-align: center;
+            background: #ffffff;
+            border: 1px solid #e6eaf0;
+            border-radius: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(20, 40, 70, 0.08);
+        }
+
+        .feature-icon {
+            font-size: 29px;
+            margin-bottom: 13px;
+        }
+
+        .feature-card h4 {
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #687386;
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        /* TECHNOLOGY SECTION */
+        .dark-section {
+            background: #f3f6fa;
+        }
+
+        .tech-card {
+            height: 100%;
+            padding: 24px 20px;
+            background: #ffffff;
+            border: 1px solid #e1e7ef;
+            border-radius: 10px;
+        }
+
+        .tech-card h4 {
+            margin-bottom: 12px;
+            color: #183b63;
+        }
+
+        .tech-card p {
+            color: #687386;
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 22px 10px;
+            color: #cbd5e1;
+            background: #101d35;
+        }
+
+        .footer p {
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .footer .small {
+            color: #93a4ba;
+        }
+
+        /* TABLET */
+        @media (max-width: 991px) {
+            .navbar-nav {
+                gap: 0;
+                padding-top: 10px;
+            }
+
+            .navbar .nav-link {
+                padding: 8px 0;
+            }
+
+            .hero {
+                padding: 45px 0;
+            }
+
+            .hero h1 {
+                font-size: 31px;
+            }
+
+            .section {
+                padding: 42px 0;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 576px) {
+            body {
+                padding-top: 60px;
+            }
+
+            .navbar {
+                min-height: 60px;
+            }
+
+            .navbar-brand {
+                font-size: 17px;
+            }
+
+            .hero {
+                padding: 38px 0;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 27px;
+                line-height: 1.4;
+            }
+
+            .hero .lead {
+                font-size: 14px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-card {
+                max-width: 280px;
+                padding: 24px 18px;
+            }
+
+            .section {
+                padding: 36px 0;
+            }
+
+            h2 {
+                font-size: 23px;
+            }
+
+            .feature-card,
+            .tech-card {
+                padding: 21px 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="index.html">
+            AI DisasterGuard
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="detection.html">Detect</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard.html">Dashboard</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="alerts.html">Alerts</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="early-warning.html">
+                        Early Warning
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="model.html">Deep Learning</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="dataset.html">Dataset</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- HERO SECTION -->
+<section class="hero">
+
+    <div class="container">
+
+        <div class="row align-items-center g-4">
+
+            <div class="col-lg-7">
+
+                <span class="badge bg-danger">
+                    DEEP LEARNING BASED SYSTEM
+                </span>
+
+                <h1>
+                    AI-Based Disaster Detection
+                    <span>&amp; Early Warning System</span>
+                </h1>
+
+                <p class="lead mt-3">
+                    Analyze disaster-related images using deep learning
+                    and explore available risk information to support
+                    disaster awareness and preparedness.
+                </p>
+
+                <div class="mt-4">
+
+                    <a href="detection.html"
+                       class="btn btn-danger me-2 mb-2">
+                        🔍 Detect Disaster
+                    </a>
+
+                    <a href="early-warning.html"
+                       class="btn btn-success me-2 mb-2">
+                        Check Early Warning
+                    </a>
+
+                    <a href="model.html"
+                       class="btn btn-outline-light mb-2">
+                        Explore AI Model
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-5">
+
+                <div class="hero-card text-center">
+
+                    <div class="warning-icon">⚠️</div>
+
+                    <h3>AI Disaster Detection</h3>
+
+                    <p>
+                        CNN · Transfer Learning · ResNet50
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- HOW THE SYSTEM WORKS -->
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-heading text-center">
+
+            <h2>How the System Works</h2>
+
+            <p>
+                From image analysis to disaster classification
+                and available risk information.
+            </p>
+
+        </div>
+
+        <div class="row g-3">
+
+            <div class="col-sm-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">📷</div>
+
+                    <h4>1. Upload</h4>
+
+                    <p>
+                        Upload an image related to a possible disaster
+                        for analysis.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🧠</div>
+
+                    <h4>2. Analyze</h4>
+
+                    <p>
+                        The deep learning model examines visual
+                        patterns in the image.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🎯</div>
+
+                    <h4>3. Classify</h4>
+
+                    <p>
+                        The model identifies a category and reports
+                        its prediction confidence.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🚨</div>
+
+                    <h4>4. Inform</h4>
+
+                    <p>
+                        Explore available disaster-risk information
+                        and official warnings.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- DEEP LEARNING TECHNOLOGY -->
+<section class="section dark-section">
+
+    <div class="container">
+
+        <div class="section-heading text-center">
+
+            <h2>Deep Learning Technology</h2>
+
+            <p>
+                Image classification using established deep learning
+                techniques and a pretrained model.
+            </p>
+
+        </div>
+
+        <div class="row g-3">
+
+            <div class="col-md-4">
+
+                <div class="tech-card">
+
+                    <h4>🧠 CNN</h4>
+
+                    <p>
+                        Convolutional Neural Networks learn visual
+                        patterns such as shapes, textures, and
+                        important image features.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="tech-card">
+
+                    <h4>🔄 Transfer Learning</h4>
+
+                    <p>
+                        Transfer learning adapts knowledge from a
+                        pretrained model to a specific image
+                        classification task.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="tech-card">
+
+                    <h4>⚡ ResNet50</h4>
+
+                    <p>
+                        ResNet50 is a deep neural network architecture
+                        that can extract image features for
+                        classification.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+    <div class="container text-center">
+
+        <p>
+            © 2026 AI-Based Disaster Detection &amp; Early Warning System
+        </p>
+
+        <p class="small">
+            Deep Learning Case Study
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Early Warning | AI DisasterGuard</title>
+
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="style.css">
+
+   <style>
+     /* Early Warning theme matched to AI DisasterGuard's existing pages */
+     body {
+       color: #111827;
+       background: #ffffff;
+       padding-top: 70px;
+       font-family: Arial, sans-serif;
+     }
+
+     .navbar {
+       min-height: 70px;
+       z-index: 1000;
+       background: #212529 !important;
+     }
+
+     .navbar-brand { font-size: 21px; }
+
+     .warning-hero {
+       color: #ffffff;
+       background: #212529;
+       padding: 65px 20px;
+     }
+
+     .warning-hero .eyebrow {
+       display: inline-block;
+       background: #dc3545;
+       color: #ffffff;
+       padding: 7px 12px;
+       border-radius: 5px;
+       font-size: 11px;
+       font-weight: 800;
+       letter-spacing: .4px;
+       margin-bottom: 16px;
+     }
+
+     .warning-hero h1 {
+       font-weight: 700;
+       line-height: 1.2;
+       color: #ffffff;
+     }
+
+     .warning-hero h1 span { color: #d1d5db; }
+
+     .warning-hero p {
+       color: #d5d5d5;
+       max-width: 720px;
+       line-height: 1.6;
+     }
+
+     .warning-hero-panel {
+       background: rgba(255,255,255,.08);
+       border: 1px solid rgba(255,255,255,.18);
+       border-radius: 12px;
+       padding: 28px 20px;
+       text-align: center;
+       height: 100%;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       color: #ffffff;
+     }
+
+     .page-section { padding: 55px 0; }
+     .section-heading { font-weight: 700; color: #111827; }
+     .section-subtitle, .section-intro { color: #6b7280; }
+     .soft-section { background: #f5f6f8; }
+
+     .btn-warning-action {
+       background: #dc3545;
+       border-color: #dc3545;
+       color: #ffffff;
+     }
+
+     .btn-warning-action:hover {
+       background: #bb2d3b;
+       border-color: #bb2d3b;
+       color: #ffffff;
+     }
+
+     .card {
+       border-radius: 12px;
+       border-color: #e5e7eb;
+     }
+
+     .risk-card {
+       height: 100%;
+       border: 1px solid #e5e7eb;
+       border-radius: 12px;
+       background: #ffffff;
+       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+       transition: transform .2s, box-shadow .2s;
+       color: #111827;
+     }
+
+     .risk-card:hover {
+       transform: translateY(-3px);
+       box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+     }
+
+     .risk-icon { font-size: 30px; }
+
+     .risk-label {
+       display: inline-block;
+       border-radius: 20px;
+       padding: 5px 10px;
+       font-size: 12px;
+       font-weight: 700;
+     }
+
+     .risk-high { background: #f8d7da; color: #842029; }
+     .risk-moderate { background: #fff3cd; color: #664d03; }
+     .risk-low { background: #d1e7dd; color: #0f5132; }
+     .risk-unknown { background: #e2e3e5; color: #41464b; }
+
+     .global-place {
+       border-bottom: 1px solid #e5e7eb;
+       padding: 15px 0;
+     }
+
+     .global-place:last-child { border-bottom: 0; }
+     .global-place-name { font-weight: 700; }
+
+     .global-place-note {
+       font-size: 13px;
+       color: #6b7280;
+       margin-top: 4px;
+     }
+
+     .risk-section-card {
+       height: 100%;
+       border: 1px solid #e5e7eb;
+       border-radius: 12px;
+       padding: 20px;
+       background: #ffffff;
+       box-shadow: 0 5px 20px rgba(0, 0, 0, .05);
+     }
+
+     #searchStatus, #worldStatus { font-size: 14px; }
+
+     .footer {
+       background: #0b1120;
+       color: #9ca3af;
+       padding: 30px 0;
+     }
+
+     @media (max-width: 768px) {
+       body { padding-top: 60px; }
+       .warning-hero { padding: 55px 20px; }
+       .page-section { padding: 40px 20px; }
+     }
+   </style>
+
+</head>
+
+<body>
+
+   <!-- Same Bootstrap navbar style as the other pages -->
+
+   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">
+      AI DisasterGuard
+    </a>
+
+    <button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="detection.html">Detection</a></li>
+        <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="alerts.html">Alerts</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="early-warning.html">Early Warning</a></li>
+        <li class="nav-item"><a class="nav-link" href="model.html">Model</a></li>
+        <li class="nav-item"><a class="nav-link" href="dataset.html">Dataset</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+   <!-- Hero banner styled to match the other AI DisasterGuard pages -->
+   <section class="warning-hero">
+     <div class="container text-center">
+       <span class="eyebrow">DISASTER RISK MONITORING</span>
+       <h1 class="display-6 mb-3">Early Warning Monitoring System</h1>
+       <p class="mb-0 mx-auto">Monitors forecast-based disaster risk indicators worldwide and displays recent earthquake activity to support awareness and preparedness.</p>
+     </div>
+   </section>
+
+   <section class="page-section">
+   <main class="container pb-2">
+
+
+<!-- Search for a particular location -->
+<section id="location-check" class="mb-5">
+  <div class="text-center mb-4">
+    <h2 class="section-heading">Check Disaster Risk by Location</h2>
+    <p class="section-subtitle mb-0">Enter a city, region, or country to review available risk indicators.</p>
+  </div>
+  <div class="card shadow-sm">
+    <div class="card-body p-4">
+      <h4 class="fw-bold mb-3">📍 Check a Location</h4>
+
+      <form id="locationForm">
+        <div class="row g-3">
+          <div class="col-md-9">
+            <input
+              id="locationInput"
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Enter a city, region or country"
+              autocomplete="off"
+              required>
+          </div>
+
+          <div class="col-md-3">
+            <button id="searchButton" type="submit"
+              class="btn btn-primary btn-lg w-100">
+              🔍 Check Risk
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <div id="searchStatus" class="text-muted mt-3" role="status">
+        Search for a place to see its four disaster-risk screening cards.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Four cards for the searched location -->
+<section class="mb-5">
+  <h2 class="fw-bold mb-2">
+    Risk Assessment: <span id="searchedLocation">Select a location</span>
+  </h2>
+
+  <p class="section-intro mb-4">
+    These four cards show information for your searched location only.
+  </p>
+
+  <div class="row g-4" id="locationResults">
+    <div class="col-12">
+      <div class="alert alert-light border">
+        Enter a location above to view its risk assessment.
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="my-5">
+
+<!-- Separate worldwide high-risk overview -->
+<section>
+  <div class="mb-4">
+    <h2 class="fw-bold">🌐 Worldwide High-Risk Watch</h2>
+    <p class="section-intro">
+      See monitored locations with elevated forecast indicators without
+      searching every place individually. Only elevated weather-screening
+      results are shown in the flood, strong-wind and landslide lists.
+    </p>
+    <div id="worldStatus" class="text-muted" role="status">
+      Loading worldwide weather data…
+    </div>
+  </div>
+
+  <div class="row g-4">
+
+    <!-- Floods -->
+    <div class="col-md-6">
+      <div class="risk-section-card">
+        <h4 class="fw-bold">🌊 Flood Risk</h4>
+        <p class="text-muted small">
+          Locations with elevated forecast rainfall indicators.
+        </p>
+        <div id="worldFlood">
+          <p class="text-muted">Loading…</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cyclones / strong winds -->
+    <div class="col-md-6">
+      <div class="risk-section-card">
+        <h4 class="fw-bold">🌀 Cyclone / Strong-Wind Watch</h4>
+        <p class="text-muted small">
+          Locations with high forecast wind gusts. Strong winds alone
+          do not confirm a tropical cyclone.
+        </p>
+        <div id="worldCyclone">
+          <p class="text-muted">Loading…</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earthquakes -->
+    <div class="col-md-6">
+      <div class="risk-section-card">
+        <h4 class="fw-bold">🏔️ Earthquake Activity</h4>
+        <p class="text-muted small">
+          Recent significant earthquake events worldwide, not predictions
+          of where the next earthquake will happen.
+        </p>
+        <div id="worldEarthquake">
+          <p class="text-muted">Loading recent seismic events…</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Landslides -->
+    <div class="col-md-6">
+      <div class="risk-section-card">
+        <h4 class="fw-bold">⛰️ Landslide Screening</h4>
+        <p class="text-muted small">
+          Monitored mountainous locations with elevated rainfall indicators.
+          This is not a confirmed landslide warning.
+        </p>
+        <div id="worldLandslide">
+          <p class="text-muted">Loading…</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="alert alert-light border mt-4 small">
+    <strong>Important:</strong> This dashboard uses forecast indicators and
+    selected monitored locations. It is not a complete global emergency-alert
+    system. Earthquakes cannot be reliably predicted for a specific place and
+    time. Always follow official local emergency instructions.
+  </div>
+</section>
+
+
+   </main>
+   </section>
+
+   <footer class="border-top py-4">
+     <div class="container text-center text-muted small">
+       AI DisasterGuard · Disaster-risk screening and awareness
+     </div>
+   </footer>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+   <script>
+     const GEO_API = "https://geocoding-api.open-meteo.com/v1/search";
+     const WEATHER_API = "https://api.open-meteo.com/v1/forecast";
+
+     /*
+       Representative locations worldwide.
+       This is a monitored sample, not every location on Earth.
+     */
+     const monitoredLocations = [
+       { name: "Mumbai, India", lat: 19.076, lon: 72.8777, landslide: false },
+       { name: "Chennai, India", lat: 13.0827, lon: 80.2707, landslide: false },
+       { name: "Guwahati, India", lat: 26.1445, lon: 91.7362, landslide: true },
+       { name: "Dehradun, India", lat: 30.3165, lon: 78.0322, landslide: true },
+       { name: "Manila, Philippines", lat: 14.5995, lon: 120.9842, landslide: false },
+       { name: "Tokyo, Japan", lat: 35.6762, lon: 139.6503, landslide: false },
+       { name: "Jakarta, Indonesia", lat: -6.2088, lon: 106.8456, landslide: false },
+       { name: "Dhaka, Bangladesh", lat: 23.8103, lon: 90.4125, landslide: false },
+       { name: "Kathmandu, Nepal", lat: 27.7172, lon: 85.324, landslide: true },
+       { name: "Hanoi, Vietnam", lat: 21.0278, lon: 105.8342, landslide: false },
+       { name: "Miami, USA", lat: 25.7617, lon: -80.1918, landslide: false },
+       { name: "Houston, USA", lat: 29.7604, lon: -95.3698, landslide: false },
+       { name: "Vancouver, Canada", lat: 49.2827, lon: -123.1207, landslide: true },
+       { name: "Rio de Janeiro, Brazil", lat: -22.9068, lon: -43.1729, landslide: true },
+       { name: "Lagos, Nigeria", lat: 6.5244, lon: 3.3792, landslide: false },
+       { name: "Nairobi, Kenya", lat: -1.2921, lon: 36.8219, landslide: false },
+       { name: "Sydney, Australia", lat: -33.8688, lon: 151.2093, landslide: false },
+       { name: "Auckland, New Zealand", lat: -36.8509, lon: 174.7645, landslide: true },
+       { name: "Istanbul, Türkiye", lat: 41.0082, lon: 28.9784, landslide: false },
+       { name: "Reykjavik, Iceland", lat: 64.1466, lon: -21.9426, landslide: false }
+     ];
+
+     const $ = id => document.getElementById(id);
+
+     function escapeHTML(value) {
+       return String(value).replace(/[&<>"']/g, ch => ({
+         "&": "&amp;",
+         "<": "&lt;",
+         ">": "&gt;",
+         '"': "&quot;",
+         "'": "&#039;"
+       })[ch]);
+     }
+
+     function riskClass(level) {
+       if (level === "HIGH") return "risk-high";
+       if (level === "MODERATE") return "risk-moderate";
+       if (level === "LOW") return "risk-low";
+       return "risk-unknown";
+     }
+
+     function riskBadge(level) {
+       return `<span class="risk-label ${riskClass(level)}">${escapeHTML(level)}</span>`;
+     }
+
+     async function geocode(query) {
+       const url = `${GEO_API}?name=${encodeURIComponent(query)}&count=1&language=en&format=json`;
+       const response = await fetch(url);
+
+       if (!response.ok) throw new Error("Could not search for this location.");
+
+       const data = await response.json();
+
+       if (!data.results || !data.results.length) {
+         throw new Error("Location not found. Try entering a city or region name.");
+       }
+
+       return data.results[0];
+     }
+
+     async function getForecast(lat, lon) {
+       const params = new URLSearchParams({
+         latitude: lat,
+         longitude: lon,
+         timezone: "auto",
+         forecast_days: "2",
+         current: "temperature_2m,precipitation,wind_speed_10m",
+         hourly: "precipitation,precipitation_probability,wind_gusts_10m"
+       });
+
+       const response = await fetch(`${WEATHER_API}?${params}`);
+
+       if (!response.ok) throw new Error("Forecast data is temporarily unavailable.");
+
+       return response.json();
+     }
+
+     function metricsFrom(weather) {
+       const h = weather.hourly || {};
+       const rain = (h.precipitation || []).slice(0, 24).map(Number);
+       const probability = (h.precipitation_probability || []).slice(0, 24).map(Number);
+       const gusts = (h.wind_gusts_10m || []).slice(0, 24).map(Number);
+
+       return {
+         rain24: rain.reduce((sum, value) => sum + (Number(value) || 0), 0),
+         rainProbability: probability.length
+           ? Math.max(...probability.map(value => Number(value) || 0)) : 0,
+         maxGust: gusts.length
+           ? Math.max(...gusts.map(value => Number(value) || 0)) : 0,
+         currentTemp: weather.current?.temperature_2m,
+         currentTime: weather.current?.time || "Latest available forecast"
+       };
+     }
+
+     function floodLevel(m) {
+       if (m.rain24 >= 100 || (m.rain24 >= 60 && m.rainProbability >= 70)) return "HIGH";
+       if (m.rain24 >= 30 || m.rainProbability >= 70) return "MODERATE";
+       return "LOW";
+     }
+
+     function windLevel(m) {
+       if (m.maxGust >= 75) return "HIGH";
+       if (m.maxGust >= 45) return "MODERATE";
+       return "LOW";
+     }
+
+     function landslideLevel(m) {
+       if (m.rain24 >= 100 || (m.rain24 >= 60 && m.rainProbability >= 70)) return "HIGH";
+       if (m.rain24 >= 30 || m.rainProbability >= 70) return "MODERATE";
+       return "LOW";
+     }
+
+     function card(icon, title, level, description, detail) {
+       return `
+         <div class="col-12 col-sm-6 col-xl-3">
+           <div class="risk-card p-4">
+             <div class="d-flex justify-content-between align-items-start mb-3">
+               <span class="risk-icon">${icon}</span>
+               ${riskBadge(level)}
+             </div>
+             <h5 class="fw-bold">${escapeHTML(title)}</h5>
+             <p class="text-muted small">${escapeHTML(description)}</p>
+             <div class="border-top pt-3 small">
+               <strong>${escapeHTML(detail)}</strong>
+             </div>
+           </div>
+         </div>
+       `;
+     }
+
+     function isMountainous(place) {
+     const text = [place.name || "", place.admin1 || "", place.country || ""].join(" ").toLowerCase();
+     return ["nepal", "bhutan", "himachal", "uttarakhand", "sikkim", "arunachal",
+       "guwahati", "dehradun", "kathmandu", "japan", "vancouver", "new zealand",
+       "rio de janeiro", "reykjavik"].some(word => text.includes(word));
+   }
+
+   function distanceKm(lat1, lon1, lat2, lon2) {
+     const rad = value => value * Math.PI / 180;
+     const dLat = rad(lat2 - lat1), dLon = rad(lon2 - lon1);
+     const a = Math.sin(dLat / 2) ** 2 +
+       Math.cos(rad(lat1)) * Math.cos(rad(lat2)) * Math.sin(dLon / 2) ** 2;
+     return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+   }
+
+   $("locationForm").addEventListener("submit", async event => {
+       event.preventDefault();
+
+       const query = $("locationInput").value.trim();
+       if (!query) return;
+
+       $("searchButton").disabled = true;
+       $("searchButton").textContent = "Checking…";
+       $("searchStatus").textContent = "Finding the location and checking the forecast…";
+
+       try {
+         const place = await geocode(query);
+         const weather = await getForecast(place.latitude, place.longitude);
+         const m = metricsFrom(weather);
+
+         const locationLabel = [
+           place.name,
+           place.admin1,
+           place.country
+         ].filter(Boolean).join(", ");
+
+         $("searchedLocation").textContent = locationLabel;
+
+         const cards = [];
+         const flood = floodLevel(m);
+         const wind = windLevel(m);
+         const mountain = isMountainous(place);
+
+         // Only show qualifying risks; never show an UNKNOWN card.
+         if (flood === "HIGH" || flood === "MODERATE") {
+           cards.push(card("🌊", "Flood", flood,
+             "Screening based on forecast rainfall.",
+             `Forecast rainfall: ${m.rain24.toFixed(1)} mm / 24h`));
+         }
+
+         if (wind === "HIGH") {
+           cards.push(card("🌀", "Cyclone / strong winds", wind,
+             "High wind-gust indicator; wind alone does not confirm a cyclone.",
+             `Maximum forecast gust: ${m.maxGust.toFixed(1)} km/h`));
+         }
+
+         if (mountain) {
+           const landslide = landslideLevel(m);
+           if (landslide === "HIGH" || landslide === "MODERATE") {
+             cards.push(card("⛰️", "Landslide", landslide,
+               "Rainfall screening for a selected mountainous region.",
+               `Forecast rainfall: ${m.rain24.toFixed(1)} mm / 24h`));
+           }
+         }
+
+         try {
+           const quakeResponse = await fetch("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson");
+           if (quakeResponse.ok) {
+             const quakeData = await quakeResponse.json();
+             const nearby = (quakeData.features || []).filter(event => {
+               const coords = event.geometry.coordinates;
+               return distanceKm(place.latitude, place.longitude, coords[1], coords[0]) <= 150;
+             }).sort((a, b) => b.properties.time - a.properties.time);
+             nearby.slice(0, 2).forEach(event => {
+               const magnitude = Number(event.properties.mag);
+               cards.push(card("🏔️", "Recent Earthquake", "HIGH",
+                 event.properties.place || "Nearby significant earthquake",
+                 `Magnitude ${Number.isFinite(magnitude) ? magnitude.toFixed(1) : "N/A"} · ${new Date(event.properties.time).toLocaleString()}`));
+             });
+           }
+         } catch (quakeError) {
+           // No UNKNOWN card is shown when earthquake data is unavailable.
+         }
+
+         $("locationResults").innerHTML = cards.length
+           ? cards.join("")
+           : '<div class="col-12"><div class="alert alert-light border">No qualifying elevated-risk signals were found for this location in the available data.</div></div>';
+
+         $("searchStatus").textContent =
+           `Forecast checked: ${m.currentTime}. These are screening indicators, not official warnings. Earthquakes shown are recent events, not predictions.`;
+
+       } catch (error) {
+         $("searchStatus").textContent = error.message || "Unable to check this location.";
+
+         $("locationResults").innerHTML = `
+           <div class="col-12">
+             <div class="alert alert-warning">${escapeHTML(error.message || "Please try again later.")}</div>
+           </div>`;
+       } finally {
+         $("searchButton").disabled = false;
+         $("searchButton").textContent = "🔍 Check Risk";
+       }
+     });
+
+     function globalPlace(name, note, detail) {
+       return `
+         <div class="global-place">
+           <div class="global-place-name">${escapeHTML(name)}</div>
+           <div class="global-place-note">${escapeHTML(note)}</div>
+           <div class="small mt-2">${detail}</div>
+         </div>`;
+     }
+
+     function renderNoHighRisk(containerId, message) {
+       $(containerId).innerHTML = `
+         <div class="alert alert-success mb-0">
+           ${escapeHTML(message)}
+         </div>`;
+     }
+
+     async function updateWorldwideWatch() {
+       $("worldStatus").textContent = "Checking forecast indicators for monitored locations worldwide…";
+
+       const results = await Promise.all(monitoredLocations.map(async place => {
+         try {
+           const weather = await getForecast(place.lat, place.lon);
+           return { ...place, metrics: metricsFrom(weather) };
+         } catch {
+           return { ...place, failed: true };
+         }
+       }));
+
+       const valid = results.filter(place => !place.failed);
+
+       if (!valid.length) {
+         $("worldStatus").textContent =
+           "Worldwide forecast data is unavailable. Check your internet connection and refresh.";
+         ["worldFlood", "worldCyclone", "worldLandslide"].forEach(id => {
+           $(id).innerHTML = '<div class="alert alert-warning mb-0">Forecast data unavailable.</div>';
+         });
+         return;
+       }
+
+       const floods = valid
+         .map(place => ({ ...place, level: floodLevel(place.metrics) }))
+         .filter(place => place.level === "HIGH" || place.level === "MODERATE")
+         .sort((a, b) => b.metrics.rain24 - a.metrics.rain24);
+
+       const cyclones = valid
+         .map(place => ({ ...place, level: windLevel(place.metrics) }))
+         .filter(place => place.level === "HIGH" || place.level === "MODERATE")
+         .sort((a, b) => b.metrics.maxGust - a.metrics.maxGust);
+
+       const landslides = valid
+         .filter(place => place.landslide)
+         .map(place => ({ ...place, level: landslideLevel(place.metrics) }))
+         .filter(place => place.level === "HIGH" || place.level === "MODERATE")
+         .sort((a, b) => b.metrics.rain24 - a.metrics.rain24);
+
+       $("worldFlood").innerHTML = floods.length
+         ? floods.map(place => globalPlace(
+             place.name,
+             "High rainfall screening indicator; local flooding is possible.",
+             riskBadge(place.level) +
+             ` <span class="text-muted ms-2">Rain: ${place.metrics.rain24.toFixed(1)} mm / 24h</span>`
+           )).join("")
+         : '<div class="alert alert-light border mb-0">No elevated rainfall-screening results among the monitored locations right now.</div>';
+
+       $("worldCyclone").innerHTML = cyclones.length
+         ? cyclones.map(place => globalPlace(
+             place.name,
+             "High forecast wind-gust indicator; this does not confirm a cyclone.",
+             riskBadge(place.level) +
+             ` <span class="text-muted ms-2">Gusts: ${place.metrics.maxGust.toFixed(1)} km/h</span>`
+           )).join("")
+         : '<div class="alert alert-light border mb-0">No elevated wind-screening results among the monitored locations right now.</div>';
+
+       $("worldLandslide").innerHTML = landslides.length
+         ? landslides.map(place => globalPlace(
+             place.name,
+             "Monitored mountainous area with high rainfall-screening indicators.",
+             riskBadge(place.level) +
+             ` <span class="text-muted ms-2">Rain: ${place.metrics.rain24.toFixed(1)} mm / 24h</span>`
+           )).join("")
+         : '<div class="alert alert-light border mb-0">No elevated rainfall-screening results among the monitored mountainous locations right now.</div>';
+
+       $("worldStatus").textContent =
+         `Updated ${new Date().toLocaleString()}. ${valid.length} of ${monitoredLocations.length} monitored locations returned forecast data.`;
+     }
+
+     /*
+       USGS earthquake feed: recent significant events worldwide.
+       This is recent seismic activity, not earthquake prediction.
+     */
+     async function updateEarthquakes() {
+       try {
+         const url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson";
+         const response = await fetch(url);
+
+         if (!response.ok) throw new Error("Earthquake feed unavailable.");
+
+         const data = await response.json();
+         const events = (data.features || [])
+           .sort((a, b) => b.properties.time - a.properties.time)
+           .slice(0, 6);
+
+         if (!events.length) {
+           $("worldEarthquake").innerHTML =
+             '<div class="alert alert-light border mb-0">No significant events are listed in this feed for the current period.</div>';
+           return;
+         }
+
+         $("worldEarthquake").innerHTML = events.map(event => {
+           const p = event.properties;
+           const place = p.place || "Location not specified";
+           const magnitude = Number(p.mag);
+           const time = new Date(p.time).toLocaleString();
+
+           return globalPlace(
+             place,
+             `Magnitude ${Number.isFinite(magnitude) ? magnitude.toFixed(1) : "N/A"} · ${time}`,
+             `<a href="${escapeHTML(p.url || "https://earthquake.usgs.gov/earthquakes/map/")}" target="_blank" rel="noopener noreferrer">View event details ↗</a>`
+           );
+         }).join("");
+
+       } catch {
+         $("worldEarthquake").innerHTML =
+           '<div class="alert alert-warning mb-0">Recent earthquake data could not be loaded. Please try again later.</div>';
+       }
+     }
+
+     updateWorldwideWatch();
+     updateEarthquakes();
+
+     // Refresh forecast screening periodically.
+     setInterval(updateWorldwideWatch, 30 * 60 * 1000);
+
+     // Refresh the recent earthquake feed every 15 minutes.
+     setInterval(updateEarthquakes, 15 * 60 * 1000);
+   </script>
+
+</body>
+</html>
